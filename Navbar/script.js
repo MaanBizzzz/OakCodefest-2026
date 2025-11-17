@@ -24,8 +24,8 @@ const pageTitle = document.getElementById('pageTitle');
 const pageNameMap = {
   'index.html': 'Home',
   'about_us': 'About Us',
-  'committees': 'Committees',
-  'prizes': 'Prizes',
+  'themes': 'Themes',
+  'resources': 'Resources',
   'register': 'Register',
   'conference-details': 'Conference Details'
 };
