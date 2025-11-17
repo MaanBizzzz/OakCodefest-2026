@@ -27,5 +27,5 @@ const pageNameMap = {
   'themes': 'Themes',
   'resources': 'Resources',
   'register': 'Register',
-  'conference-details': 'Conference Details'
+  'event-details': 'Event Details'
 };
