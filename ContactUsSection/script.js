@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const fields = document.querySelectorAll(".field");
 
-    // Create ONE global cursor
     const cursor = document.createElement("span");
     cursor.classList.add("cursor");
     cursor.textContent = "▌";
