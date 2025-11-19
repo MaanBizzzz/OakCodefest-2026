@@ -1,7 +1,6 @@
 body {
     background-color: rgb(17, 17, 17);
     margin: 0;
-    padding: 40px;
     font-family: "Menlo", "Consolas", "Courier New", monospace;
     color: #ffffff;
 }
@@ -69,3 +68,57 @@ body {
 .field {
     white-space: nowrap;
 }
+
+@media (max-width: 1200px) {
+    .info {
+        font-size: 18px;
+    }
+    .cursor {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .info {
+        font-size: 16px;
+    }
+    .cursor {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 900px) {
+    .ascii img {
+        display: block;
+        margin: 0 auto;
+    }
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .ascii img {
+        max-width: 80%;
+    }
+    .info {
+        font-size: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .cursor {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ascii img {
+        max-width: 90%;
+    }
+    .info {
+        font-size: 15px;
+    }
+    .cursor {
+        font-size: 15px;
+    }
+}
+
