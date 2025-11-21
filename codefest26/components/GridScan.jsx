@@ -66,7 +66,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     vec3 color = vec3(0.0);
   float minT = 1e20;
   float gridScale = max(1e-5, uGridScale);
-    float fadeStrength = 2.0;
+    float fadeStrength = 0.0;
     vec2 gridUV = vec2(0.0);
 
   float hitIsY = 1.0;
