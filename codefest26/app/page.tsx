@@ -31,8 +31,8 @@ const ParticleField = ({ count = 25, particleColor = PARTICLE_COLOR }) => {
       hueShift: +(Math.random() * 40 - 20).toFixed(1),
       rotate: +(Math.random() * 40 - 20).toFixed(1),
       opacity: +(Math.random() * 0.6 + 0.35).toFixed(2)
-    })), 
-  [count, bank]); 
+    })),
+  [count, bank]);
 
   const styleBlock = `
     .pf-wrapper { position: absolute; inset: 0; pointer-events: none; overflow: visible; z-index: 8; }
