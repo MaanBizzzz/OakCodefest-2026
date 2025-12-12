@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Launch Day Announced",
+    "description": "Codefest 2026 is locked in — 7th-8th Feb. Overnight hackathon vibes.",
+    "date": "2026-02-07",
+    "image": "https://picsum.photos/800/600?random=1",
+    "importance": 3
+  },
+  {
+    "title": "Workshops Published",
+    "description": "Sign up for intro ML, embedded systems, and rapid prototyping workshops.",
+    "date": "2026-01-20",
+    "image": "https://picsum.photos/800/600?random=2",
+    "importance": 2
+  },
+  {
+    "title": "Sponsor Reveal",
+    "description": "Announcing our platinum sponsors — exciting swags incoming.",
+    "date": "2025-12-10",
+    "image": "https://picsum.photos/800/600?random=3",
+    "importance": 1
+  },
+  {
+    "title": "Volunteer Call",
+    "description": "We're recruiting volunteers across logistics, judging, and mentoring.",
+    "date": "2025-11-25",
+    "image": "https://picsum.photos/800/600?random=4",
+    "importance": 2
+  },
+  {
+    "title": "Theme Public",
+    "description": "This year: 'Build Humanity' — challenges aligned to social impact.",
+    "date": "2025-11-01",
+    "image": "https://picsum.photos/800/600?random=5",
+    "importance": 1
+  }
+]
