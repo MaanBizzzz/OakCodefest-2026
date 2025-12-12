@@ -150,6 +150,7 @@ export default function Page() {
         />
 
         <ParticleField count={25} particleColor={PARTICLE_COLOR} />
+
         <style>{`
         @media (max-width: 900px) {
           h1 {
@@ -173,6 +174,7 @@ export default function Page() {
           }
         }
       `}</style>`
+
         <div
           style={{
             position: "absolute",
