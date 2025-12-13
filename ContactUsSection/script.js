@@ -1,38 +1,75 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const fields = document.querySelectorAll(".field");
+    const container = document.querySelector(".container");
 
-    const cursor = document.createElement("span");
-    cursor.classList.add("cursor");
-    cursor.textContent = "▌";
-    cursor.style.fontSize = "20px";
-    cursor.style.position = "fixed";
-    document.body.appendChild(cursor);
+    const startTypingAnimation = () => {
+        const fields = container.querySelectorAll(".field");
 
-    let delay = 0;
+        const cursor = document.createElement("span");
+        cursor.classList.add("cursor");
+        cursor.textContent = "▌";
+        cursor.style.fontSize = "20px"; 
+        cursor.style.position = "absolute";
+        document.body.appendChild(cursor);
 
-    fields.forEach(field => {
-        const text = field.textContent.trim();
-        field.textContent = "";
+        let delay = 0;
 
-        const span = document.createElement("span");
-        field.appendChild(span);
+        fields.forEach(field => {
+            const text = field.textContent.trim();
+            field.textContent = "";
 
-        const colonIndex = text.indexOf(":");
+            const span = document.createElement("span");
+            field.appendChild(span);
 
-        [...text].forEach((char, i) => {
+            const colonIndex = text.indexOf(":");
+
+            [...text].forEach((char, i) => {
+                setTimeout(() => {
+                    if (i <= colonIndex) {
+                        span.innerHTML += `<span class="label">${char}</span>`;
+                    } else {
+                        span.innerHTML += char;
+                    }
+                    
+                    const rect = field.getBoundingClientRect();
+                    
+                    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                        const absoluteTop = rect.top + window.scrollY;
+                        cursor.style.left = (rect.left + span.offsetWidth + 6) + "px";
+                        cursor.style.top = absoluteTop + "px";
+                    }
+                    
+
+                }, delay + i * 30);
+            });
+
             setTimeout(() => {
-                if (i <= colonIndex) {
-                    span.innerHTML += `<span class="label">${char}</span>`;
-                } else {
-                    span.innerHTML += char;
-                }
                 const rect = field.getBoundingClientRect();
+                const absoluteTop = rect.top + window.scrollY;
                 cursor.style.left = (rect.left + span.offsetWidth + 6) + "px";
-                cursor.style.top = rect.top + "px";
+                cursor.style.top = absoluteTop + "px";
+            }, delay + text.length * 30);
 
-            }, delay + i * 30);
+
+            delay += text.length * 30 + 200;
         });
+    };
 
-        delay += text.length * 30 + 200;
-    });
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startTypingAnimation();
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            rootMargin: '0px',
+            threshold: 0.1
+        }
+    );
+
+    if (container) {
+        observer.observe(container);
+    }
 });
