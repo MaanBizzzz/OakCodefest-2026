@@ -203,7 +203,7 @@ function setupDrag() {
   });
 }
 
-window.addEventListener('resize', () => updatePosition(false););
+window.addEventListener('resize', () => updatePosition(false));
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
