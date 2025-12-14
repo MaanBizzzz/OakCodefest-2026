@@ -215,7 +215,7 @@ if (document.readyState === 'loading') {
 // COUNTDOWN
 document.addEventListener("DOMContentLoaded", () => {
 
-  const targetDate = new Date("2025-12-14T10:40:30").getTime();
+  const targetDate = new Date("2026-02-07T10:00:00").getTime();
   let lastValues = {};
 
   function UpdateCountdown() {
