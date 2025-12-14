@@ -1,3 +1,5 @@
+@import url(Common\styles.css);
+
 html, body {
   margin: 0;
   padding: 0;
@@ -253,7 +255,7 @@ html, body {
 .countdown-title {
   font-size: 36px;
   margin-bottom: 40px;
-  color: var(--accent-color);
+  color: var(--sec-accent-color);
   letter-spacing: 1px;
 }
 
@@ -289,7 +291,7 @@ html, body {
   display: block;
   margin-top: 6px;
   font-size: 13px;
-  color: #bfc9cc;
+  color: var(--accent-color);
   letter-spacing: 0.5px;
 }
 
@@ -328,19 +330,19 @@ html, body {
 @keyframes pulseGlow {
   0% {
     box-shadow:
-      0 0 14px rgba(53, 208, 227, 0.45),
-      0 0 30px rgba(53, 208, 227, 0.25);
+      0 0 14px var(--accent-color),
+      0 0 32px var(--accent-color);
   }
   50% {
     box-shadow:
-      0 0 22px rgba(53, 208, 227, 0.75),
-      0 0 55px rgba(53, 208, 227, 0.45),
-      0 0 80px rgba(255, 231, 51, 0.15); 
+      0 0 16px var(--accent-color),
+      0 0 40px var(--accent-color),
+      0 0 70px var(--sec-accent-color);
   }
   100% {
     box-shadow:
-      0 0 14px rgba(53, 208, 227, 0.45),
-      0 0 30px rgba(53, 208, 227, 0.25);
+      0 0 14px var(--accent-color),
+      0 0 32px var(--accent-color);
   }
 }
 
@@ -356,48 +358,52 @@ html, body {
 .live-container {
   padding: 100px 20px;
   text-align: center;
-  animation: pulseGlow 2.5s infinite;
+  animation: none;
+  box-shadow: none;
+  background: transparent;
 }
 
 .live-container h1 {
   font-size: 52px;
   color: var(--sec-accent-color);
   margin-bottom: 20px;
+  -webkit-text-stroke: 1.5px rgba(0,0,0,0.25);
+  -webkit-text-fill-color: var(--sec-accent-color);
+  text-shadow:
+    0 0 2px rgba(255,255,255,0.04),
+    0 0 10px rgba(126,97,255,0.5);
+  display: block;
+  padding: 6px 0;
+  margin-bottom: 10px;
 }
 
 .live-container p {
   font-size: 20px;
   color: var(--text-color);
   letter-spacing: 1px;
-}
-
-@media (max-width: 700px) {
-  .live-container h1 {
-    font-size: 36px;
-  }
-}
-
-.time-box {
-  box-shadow:
-    0 0 14px rgba(53, 208, 227, 0.45),
-    0 0 32px rgba(53, 208, 227, 0.25);
+  -webkit-text-stroke: 0.6px rgba(0,0,0,0.15);
+  -webkit-text-fill-color: var(--text-color);
+  text-shadow: 0 0 6px rgba(0,0,0,0.10);
+  display: block;
+  margin: 0 auto;
+  padding: 4px 0;
 }
 
 @keyframes yellowAccentPulse {
   0% {
     box-shadow:
-      0 0 14px rgba(53, 208, 227, 0.45),
-      0 0 32px rgba(53, 208, 227, 0.25);
+      0 0 14px var(--accent-color),
+      0 0 32px var(--accent-color);
   }
   50% {
     box-shadow:
-      0 0 16px rgba(53, 208, 227, 0.6),
-      0 0 40px rgba(53, 208, 227, 0.35),
-      0 0 70px rgba(255, 231, 51, 0.18);
+      0 0 16px var(-v-accent-color),
+      0 0 40px var(--accent-color),
+      0 0 70px ar(--sec-accent-color);
   }
   100% {
     box-shadow:
-      0 0 14px rgba(53, 208, 227, 0.45),
-      0 0 32px rgba(53, 208, 227, 0.25);
+      0 0 14px var(--accent-color),
+      0 0 32px var(--accent-color);
   }
 }

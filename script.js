@@ -215,10 +215,10 @@ if (document.readyState === 'loading') {
 // COUNTDOWN
 document.addEventListener("DOMContentLoaded", () => {
 
-  const targetDate = new Date("2026-02-07T08:00:00").getTime();
+  const targetDate = new Date("2025-12-14T10:40:30").getTime();
   let lastValues = {};
 
-  function updateCountdown() {
+  function UpdateCountdown() {
     const now = Date.now();
     let diff = targetDate - now;
 
@@ -231,14 +231,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const seconds = totalSeconds % 60;
     const minutes = Math.floor(totalSeconds / 60) % 60;
     const hours = Math.floor(totalSeconds / 3600) % 24;
-    const days = Math.floor(totalSeconds / 86400) % 7;
-    const weeks = Math.floor(totalSeconds / 604800);
+    const days = Math.floor(totalSeconds / 86400);
 
-    setValue("weeks", weeks);
-    setValue("days", days);
-    setValue("hours", hours);
-    setValue("minutes", minutes);
-    setValue("seconds", seconds);
+    SetValue("days", days);
+    SetValue("hours", hours);
+    SetValue("minutes", minutes);
+    SetValue("seconds", seconds);
 
     const countdownEl = document.getElementById("countdown");
 
@@ -250,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-  function setValue(id, value) {
+  function SetValue(id, value) {
     const el = document.getElementById(id);
     if (!el) return;
 
@@ -271,12 +269,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     section.innerHTML = `
       <div class="live-container">
-        <h1>CODEFEST 2026 IS LIVE</h1>
-        <p>:Let The Hacking Begin!</p>
+        <h1> OAKRIDGE CODEFEST 2026 IS LIVE!</h1>
+        <p>Let The Hacking Begin!</p>
       </div>
     `;
   }
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  UpdateCountdown();
+  setInterval(UpdateCountdown, 1000);
 });
