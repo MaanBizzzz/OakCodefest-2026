@@ -1,3 +1,4 @@
+// UPDATES
 let TRACK;
 const LEFT_BTN_SELECTOR = '.nav-btn.left';
 const RIGHT_BTN_SELECTOR = '.nav-btn.right';
@@ -216,3 +217,70 @@ if (document.readyState === 'loading') {
 } else {
   init();
 }
+
+// COUNTDOWN
+document.addEventListener("DOMContentLoaded", () => {
+
+  const targetDate = new Date("2026-02-07T10:00:00").getTime();
+  let lastValues = {};
+
+  function UpdateCountdown() {
+    const now = Date.now();
+    let diff = targetDate - now;
+
+    if (diff <= 0) {
+      showLiveState();
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const seconds = totalSeconds % 60;
+    const minutes = Math.floor(totalSeconds / 60) % 60;
+    const hours = Math.floor(totalSeconds / 3600) % 24;
+    const days = Math.floor(totalSeconds / 86400);
+
+    SetValue("days", days);
+    SetValue("hours", hours);
+    SetValue("minutes", minutes);
+    SetValue("seconds", seconds);
+
+    const countdownEl = document.getElementById("countdown");
+
+  if (diff <= 86400000) {
+    countdownEl?.classList.add("final-glow");
+  } else {
+    countdownEl?.classList.remove("final-glow");
+  }
+
+  }
+
+  function SetValue(id, value) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const formatted = String(value).padStart(2, "0");
+
+    if (lastValues[id] !== formatted) {
+      el.textContent = formatted;
+      el.classList.remove("flip");
+      void el.offsetWidth;
+      el.classList.add("flip");
+      lastValues[id] = formatted;
+    }
+  }
+
+  function showLiveState() {
+    const section = document.getElementById("countdown-section");
+    if (!section) return;
+
+    section.innerHTML = `
+      <div class="live-container">
+        <h1>OAKRIDGE CODEFEST 2026 IS LIVE!</h1>
+        <p>Let The Hacking Begin!</p>
+      </div>
+    `;
+  }
+
+  UpdateCountdown();
+  setInterval(UpdateCountdown, 1000);
+});

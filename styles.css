@@ -1,3 +1,5 @@
+@import url(Common\styles.css);
+
 html, body {
   margin: 0;
   padding: 0;
@@ -226,158 +228,182 @@ html, body {
   -ms-user-select: none;
 }
 
-.info-section {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 0 20px;
+#countdown,
+.time-box,
+.time-box span,
+.time-box small,
+.live-container {
+  font-family: "Menlo", "Consolas", "Courier New", monospace;
+}
+
+.time-box span {
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+}
+
+
+
+#countdown-section {
+  width: 100%;
+  padding: 80px 20px;
+  background: var(--bg-color);
+  color: var(--text-color);
   text-align: center;
-}
-.about-us-image {
-  width: 100%;
-  max-width: 800px;
-  display: block;
-  margin: 20px auto;
-  border-radius: 12px;
+  font-family: Inter, system-ui, sans-serif;
 }
 
-.info-section {
-  max-width: 1200px;
-  margin: 140px auto;
-  padding: 0 48px;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 80px;
-  align-items: center;
-  position: relative;
+.countdown-title {
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: var(--sec-accent-color);
+  letter-spacing: 1px;
 }
 
-.info-section::before {
-  content: "";
-  position: absolute;
-  inset: -80px 0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(60,140,255,0.12), transparent 60%);
-  pointer-events: none;
-}
-
-.info-section-container {
-  text-align: left;
-}
-
-.info-section h2 {
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 800;
-  margin: 0 0 20px;
-  letter-spacing: -0.02em;
-  color: var(--text-color);
-}
-
-.info-section p {
-  font-size: 16px;
-  line-height: 1.75;
-  color: var(--text-color);
-  max-width: 520px;
-}
-
-.about-us-image {
-  width: 100%;
-  border-radius: 18px;
-  object-fit: cover;
-  box-shadow:
-    0 40px 90px rgba(0,0,0,0.6),
-    inset 0 0 0 1px var(--text-bg);
-  filter: contrast(1.05) brightness(0.95);
-}
-
-.awards-section {
-  position: relative;
-  margin-top: 160px;
-  margin-bottom: 160px;
-  padding: 200px 0 240px;
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      rgba(53,208,227,0.22),
-      rgba(53,208,227,0.08) 35%,
-      rgba(17,17,17,0.9) 65%,
-      var(--bg-color) 100%
-    );
-  overflow: hidden;
-}
-
-.awards-section-div {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 48px;
+#countdown {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  z-index: 2;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
-.awards {
-  width: min(880px, 95%);
-  margin-bottom: 72px;
-  filter:
-    brightness(0.95)
-    contrast(1.15);
-  box-shadow:
-    0 100px 200px rgba(0,0,0,0.95);
-  mask-image: linear-gradient(
-    to bottom,
-    black 65%,
-    rgba(0,0,0,0.7) 80%,
-    transparent 100%
+.time-box {
+  min-width: 110px;
+  padding: 22px 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.02)
   );
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6);
 }
 
-.awards-section h2 {
-  font-size: clamp(52px, 7vw, 84px);
-  margin: 0 0 20px;
-  font-weight: 900;
-  letter-spacing: -0.04em;
+.time-box span {
+  display: block;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--cl-color);
+}
+
+.time-box small {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
   color: var(--accent-color);
+  letter-spacing: 0.5px;
+}
+
+.time-box.seconds span {
+  color: var(--sec-accent-color);
+}
+
+@media (max-width: 700px) {
+  .countdown-title {
+    font-size: 28px;
+  }
+
+  .time-box {
+    min-width: 90px;
+  }
+
+  .time-box span {
+    font-size: 32px;
+  }
+}
+
+@keyframes flip {
+  0%   { transform: rotateX(0); }
+  50%  { transform: rotateX(90deg); }
+  100% { transform: rotateX(0); }
+}
+
+.time-box span {
+  perspective: 600px;
+}
+
+.time-box span.flip {
+  animation: flip 0.45s ease;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow:
+      0 0 14px var(--accent-color),
+      0 0 32px var(--accent-color);
+  }
+  50% {
+    box-shadow:
+      0 0 16px var(--accent-color),
+      0 0 40px var(--accent-color),
+      0 0 70px var(--sec-accent-color);
+  }
+  100% {
+    box-shadow:
+      0 0 14px var(--accent-color),
+      0 0 32px var(--accent-color);
+  }
+}
+
+.final-glow .time-box {
+  animation: pulseGlow 4.5s ease-in-out infinite;
+}
+
+
+.final-glow .time-box {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+.live-container {
+  padding: 100px 20px;
+  text-align: center;
+  animation: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.live-container h1 {
+  font-size: 52px;
+  color: var(--sec-accent-color);
+  margin-bottom: 20px;
+  -webkit-text-stroke: 1.5px rgba(0,0,0,0.25);
+  -webkit-text-fill-color: var(--sec-accent-color);
   text-shadow:
-    0 0 40px var(--accent-color);
+    0 0 2px var(--sec-bg),
+    0 0 10px var(--accent-color);
+  display: block;
+  padding: 6px 0;
+  margin-bottom: 10px;
 }
 
-.awards-section p {
-  font-size: 17px;
-  line-height: 1.8;
+.live-container p {
+  font-size: 20px;
   color: var(--text-color);
-  max-width: 520px;
-  opacity: 0.9;
+  letter-spacing: 1px;
+  -webkit-text-stroke: 0.6px rgba(0,0,0,0.15);
+  -webkit-text-fill-color: var(--text-color);
+  text-shadow: 0 0 6px rgba(0,0,0,0.10);
+  display: block;
+  margin: 0 auto;
+  padding: 4px 0;
 }
 
-.awards-section::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 160px;
-  background: linear-gradient(
-    to top,
-    rgba(17,17,17,0),
-    var(--bg-color)
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-
-.awards-section::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 140px;
-  background: linear-gradient(
-    to bottom,
-    var(--bg-color)
-  );
-  pointer-events: none;
+@keyframes yellowAccentPulse {
+  0% {
+    box-shadow:
+      0 0 14px var(--accent-color),
+      0 0 32px var(--accent-color);
+  }
+  50% {
+    box-shadow:
+      0 0 16px var(--accent-color),
+      0 0 40px var(--accent-color),
+      0 0 70px var(--sec-accent-color);
+  }
+  100% {
+    box-shadow:
+      0 0 14px var(--accent-color),
+      0 0 32px var(--accent-color);
+  }
 }
