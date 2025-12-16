@@ -228,6 +228,163 @@ html, body {
   -ms-user-select: none;
 }
 
+.info-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.about-us-image {
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  margin: 20px auto;
+  border-radius: 12px;
+}
+
+.info-section {
+  max-width: 1200px;
+  margin: 140px auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+
+.info-section::before {
+  content: "";
+  position: absolute;
+  inset: -80px 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(60,140,255,0.12), transparent 60%);
+  pointer-events: none;
+}
+
+.info-section-container {
+  text-align: left;
+}
+
+.info-section h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
+}
+
+.info-section p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-color);
+  max-width: 520px;
+}
+
+.about-us-image {
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow:
+    0 40px 90px rgba(0,0,0,0.6),
+    inset 0 0 0 1px var(--text-bg);
+  filter: contrast(1.05) brightness(0.95);
+}
+
+.awards-section {
+  position: relative;
+  margin-top: 160px;
+  margin-bottom: 160px;
+  padding: 200px 0 240px;
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(53,208,227,0.22),
+      rgba(53,208,227,0.08) 35%,
+      rgba(17,17,17,0.9) 65%,
+      var(--bg-color) 100%
+    );
+  overflow: hidden;
+}
+
+.awards-section-div {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.awards {
+  width: min(880px, 95%);
+  margin-bottom: 72px;
+  filter:
+    brightness(0.95)
+    contrast(1.15);
+  box-shadow:
+    0 100px 200px rgba(0,0,0,0.95);
+  mask-image: linear-gradient(
+    to bottom,
+    black 65%,
+    rgba(0,0,0,0.7) 80%,
+    transparent 100%
+  );
+}
+
+.awards-section h2 {
+  font-size: clamp(52px, 7vw, 84px);
+  margin: 0 0 20px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--accent-color);
+  text-shadow:
+    0 0 40px var(--accent-color);
+}
+
+.awards-section p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-color);
+  max-width: 520px;
+  opacity: 0.9;
+}
+
+.awards-section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 160px;
+  background: linear-gradient(
+    to top,
+    rgba(17,17,17,0),
+    var(--bg-color)
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.awards-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    rgba(17,17,17,0),
+    var(--bg-color)
+  );
+  pointer-events: none;
+}
+
 #countdown,
 .time-box,
 .time-box span,
@@ -306,7 +463,7 @@ html, body {
 
   .time-box {
     min-width: 90px;
-  }
+}
 
   .time-box span {
     font-size: 32px;
@@ -340,7 +497,7 @@ html, body {
       0 0 70px var(--sec-accent-color);
   }
   100% {
-    box-shadow:
+  box-shadow:
       0 0 14px var(--accent-color),
       0 0 32px var(--accent-color);
   }
@@ -405,5 +562,5 @@ html, body {
     box-shadow:
       0 0 14px var(--accent-color),
       0 0 32px var(--accent-color);
-  }
+}
 }
