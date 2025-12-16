@@ -416,6 +416,10 @@ html, body {
   letter-spacing: 1px;
 }
 
+.countdown-title .begins {
+  color: var(--tert-accent-color);
+}
+
 #countdown {
   display: flex;
   justify-content: center;
@@ -481,7 +485,7 @@ html, body {
 }
 
 .time-box span.flip {
-  animation: flip 0.45s ease;
+  animation: flip 0.35s ease;
 }
 
 @keyframes pulseGlow {
