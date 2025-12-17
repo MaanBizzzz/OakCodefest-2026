@@ -184,36 +184,36 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
-  }
-  
-  .reviews-section h2 {
+}
+
+.reviews-section h2 {
     font-size: 2.5em;
     margin-bottom: 40px;
     width: 100%;
     color: var(--sec-accent-color);
-  }
-  
-  .reviews-main-content {
+}
+
+.reviews-main-content {
     width: 100%;
     text-align: center;
-  }
-  
-  /* Scrolling container */
-  .lazy-scrolling-container {
+}
+
+/* Scrolling container */
+.lazy-scrolling-container {
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
     margin-top: 5%;
-  }
-  
-  .carousel {
+}
+
+.carousel {
     display: flex;
     gap: 30px;
     width: max-content;
     padding: 0 20px;
-  }
-  
-  .review-card {
+}
+
+.review-card {
     flex: 0 0 auto;
     background-color: var(--bg-color);
     border: 4px solid var(--accent-color);
@@ -221,16 +221,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .review-card img {
+}
+
+.review-card img {
     display: block;
     max-width: 100%;
     height: auto;
     border-radius: 30px;
-  }
+}
 
-  .lazy-scrolling-container.left .review-card {
+.lazy-scrolling-container.left .review-card {
     border-color: var(--sec-accent-color);
-  }
-  
+}
