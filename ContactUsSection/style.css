@@ -3,7 +3,7 @@
     align-items: flex-start;
     justify-content: center; /* centers the entire section horizontally */
     gap: 40px;
-    width: 100vw !important; /* safe to ensure centering works reliably */
+    width: 100%; /* safe to ensure centering works reliably */
     background-color: rgb(17, 17, 17);
     margin: 0;
     font-family: "Menlo", "Consolas", "Courier New", monospace;
