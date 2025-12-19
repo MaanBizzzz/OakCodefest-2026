@@ -58,6 +58,7 @@
     width: 10px;
     color: var(--sec-accent-color);
     animation: blink 0.8s infinite;
+    z-index: 9999;
 }
 
 @keyframes blink {
