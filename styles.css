@@ -669,3 +669,57 @@ html, body {
   margin-bottom: 5%;
   font-size: 2.5em;
 }
+
+
+/* Thinner Screens */
+
+@media (max-width: 768px) {
+  .info-section {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin: 80px auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .info-section-container {
+    text-align: center;
+  }
+
+  .info-section h2 {
+    font-size: 32px;
+  }
+
+  .info-section p {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .about-us-image {
+    max-width: 100%;
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 24px 16px;
+  }
+
+  .info .title {
+    font-size: 16px;
+  }
+
+  .info .field {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .ascii img {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  
+}
+

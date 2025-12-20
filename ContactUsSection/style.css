@@ -116,10 +116,18 @@
         max-width: 90%;
     }
     .info {
-        font-size: 15px;
+        font-size: 12px;
     }
     .cursor {
-        font-size: 15px;
+        font-size: 12px;
     }
 }
 
+@media (max-width: 400px) {
+    info {
+        font-size: 10px;
+    }
+    .cursor {
+        font-size: 10px;
+    }
+}

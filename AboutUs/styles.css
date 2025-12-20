@@ -354,11 +354,24 @@ section {
     .bubble-3 {
         left: 60%
     }
-
-    ;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1500px){
+    .bubble-3 {
+        display: none;
+    }
+}
+
+@media (max-width: 1300px) {
+    .bubble-2 {
+        top: 60%;
+        left: 70%;
+        width: 15vw;
+        height: 15vw;
+    }
+}
+
+@media (max-width: 1000px) {
     .hero-section {
         min-height: 450px;
         padding: 60px 15px;
@@ -374,10 +387,29 @@ section {
     }
 
     .bubble-1,
-    .bubble-2,
-    .bubble-3 {
+    .bubble-2 {
         display: none;
     }
+    .bubble-3 {
+        width: 200px;
+        height: 200px;
+        left: 37.5vw;
+        top: 50%;
+        display: block;
+    }
+    .mission-vision-image {
+        margin-top: 20%;
+    }
+}
+
+@media (max-width: 750px) {
+    .bubble-3 {
+        width: 25vw;
+        height: 25vw;
+        left: 37.5vw;
+        top: 50%;
+        display: block;
+    }  
 }
 
 @media (max-width: 480px) {
@@ -396,12 +428,33 @@ section {
     }
 
     .bubble-1,
-    .bubble-2,
-    .bubble-3 {
+    .bubble-2 {
         display: none;
+    }
+
+    .bubble-3 {
+        width: 45vw;
+        height: 45vw;
+        left: 27.5vw;
+        top: 40%;
+    }
+}
+
+@media (max-width: 380px) {
+    .bubble-3 {
+        width: 45vw;
+        height: 45vw;
+        left: 27.5vw;
+        top: 50%;
     }
 }
 
 .mission-and-vision {
     font-size: 1.2em;
 }
+
+.terminal-output {
+    white-space: pre-wrap;
+    word-wrap: break-word; /* legacy */
+    overflow-wrap: break-word; /* modern */
+  }
