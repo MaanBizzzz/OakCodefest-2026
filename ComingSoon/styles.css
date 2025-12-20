@@ -92,17 +92,73 @@ body {
 
     .countdown-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .benefits-grid {
+        gap: 30px;
+    }
+
+    .coming-soon-footer {
+        padding: 30px 20px;
+        margin-top: 30px;
     }
 
     .countdown-section,
     .benefits-section {
-        padding: 20px;
+        padding: 40px 20px;
+    }
+
+    .section-title {
+        font-size: 2.5em;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 }
 
 @media (max-width: 480px) {
+    .coming-soon-hero {
+        padding: 60px 15px 15px;
+    }
+
+    .countdown-grid {
+        gap: 20px;
+    }
+
+    .benefits-grid {
+        gap: 20px;
+    }
+
+    .coming-soon-footer {
+        padding: 20px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
     .countdown-item .benefit-icon {
         font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2em;
+    }
+
+    .terminal-body {
+        font-size: 0.8rem;
+        padding: 15px;
+    }
+
+    .terminal-header {
+        padding: 8px 12px;
+    }
+
+    .benefit-card {
+        padding: 20px;
+    }
+
+    .field {
+        white-space: normal;
+        word-break: break-word;
     }
 }
 
