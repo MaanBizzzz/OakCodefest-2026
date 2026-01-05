@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.section-title {
+    margin-top: 50px;
+    font-size: 3em;
+    font-weight: 900;
+    color: var(--sec-accent-color);
+    margin-bottom: 50px;
+}
+
+.resource-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    flex-wrap: wrap;
+}
+
+.main-heading {
+    margin-top: 50px;
+    font-size: 4em;
+    font-weight: 1200;
+    color: var(--sec-accent-color);
+    margin-bottom: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.resource-button {
+    display: block;
+    padding: 18px 30px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 15px var(--box-shadow-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    min-width: 200px;
+    text-align: center;
+    border: 3px solid var(--sec-accent-color);
+}
+
+.resource-button:hover {
+    transform: translateY(-3px);
+    border: 3px solid var(--accent-color);
+}
+
+@media (min-width: 768px) {
+    .delegate-resources {
+        padding: 120px 20px;
+    }
+
+    .resource-buttons {
+        flex-direction: row;
+        gap: 30px;
+        max-width: none;
+    }
+
+    .resource-button {
+        width: auto;
+        min-width: 220px;
+    }
+
+    .resources-section {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 50px;
+    }
+
+    .resource-card {
+        flex-direction: row;
+    }
+
+    .resource-card .resource-img {
+        width: 40%;
+        height: auto;
+        border-bottom: none;
+        border-right: 5px solid var(--sec-accent-color);
+    }
+
+    .resource-card .resource-content {
+        width: 60%;
+    }
+
+    .resource-img {
+        height: 280px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .resource-buttons {
+        gap: 40px;
+    }
+
+    .resource-button {
+        padding: 22px 45px;
+        font-size: 1.4rem;
+    }
+
+    .resources-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px 40px;
+    }
+}
