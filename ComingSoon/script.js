@@ -40,7 +40,7 @@ window.addEventListener('resize', () => {
 });
 
 
-const eventDate = new Date('2026-02-07T09:00:00').getTime();
+const eventDate = new Date('2026-02-07T10:00:00').getTime();
 
 function updateCountdown() {
     const now = Date.now();
