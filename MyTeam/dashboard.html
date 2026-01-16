@@ -13,49 +13,53 @@
 
     <script src="../Common/script.js"></script>
     <script type="module" src="../Navbar/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="dashboard.js"></script>
-    <h1> Dashboard - To Be Implemented</h1>
-    <div class="timeleftcountdown">
-        <h1>Time Left</h1>
-        <!-- Insert Countdown here -->
-    </div>
 
-    <div class="eventtimings">
-        <h1>Event Timings</h1>
-        <!-- Insert Event Timings here -->
-    </div>
+    <main class="dashboard">
 
-    <div class="teamdetails">
-        <h1>Team Details</h1>
-        <!-- Insert Team Details here -->
-    </div>
+      <section class="card teamdetails">
+        <h2>Team</h2>
+        <div id="team-info"></div>
+      </section>
 
-    <div class="projectdetails">
-        <h1>Project Details</h1>
-        <!-- Insert Project Details here (check if it exists in the db or else have them fill it ) -->
-    </div>
+      <section class="card timeleft">
+        <h2>Time Left</h2>
+        <div id="countdown" class="countdown">Loading…</div>
+      </section>
 
-    <div class="github">
-        <h1>GitHub</h1>
-        <!-- Insert GitHub here (check if it exists in the db or else have them fill it )-->
-    </div>
+      <section class="card feedback feedback-full">
+        <h2>Feedback</h2>
+        <div id="feedback-list"></div>
+      </section>
 
-    <div class="leaderboard">
-        <h1>Leaderboard</h1>
+      <section class="card projectdetails">
+        <h2>Project</h2>
+        <div id="project-info"></div>
+      </section>
+
+      <section class="card github">
+        <h2>GitHub</h2>
+        <div id="github-info"></div>
+      </section>
+
+      <section class="card eventtimings">
+        <h2>Event Timings</h2>
+        <ul id="event-timeline"></ul>
+      </section>
+
+      <section class="card leaderboard">
+        <h2>Leaderboard</h2>
         <div class="leaderboard-container">
-            <div class="leaderboard-header">
-                <div class="leaderboard-rank">Rank</div>
-                <div class="leaderboard-team">Team</div>
-                <div class="leaderboard-score">Score</div>
-            </div>
-            <div class="leaderboard-body">
-                <!-- Leaderboard entries will be inserted here -->
-            </div>
+          <div class="leaderboard-header">
+            <span>Rank</span>
+            <span>Team</span>
+            <span>Score</span>
+          </div>
+          <div class="leaderboard-body" id="leaderboard-body"></div>
         </div>
-    </div>
+      </section>
 
-    <div class="feedback">
-        <h1>Feedback</h1>
-        <!-- Insert Feedback from judges here -->
-    </div>
+    </main>
 </body>
+</html>

@@ -1,158 +1,252 @@
+:root {
+  --bg-color: rgb(17, 17, 17);
+  --accent-color: rgb(255, 231, 51);
+  --sec-accent-color: rgb(53, 208, 227);
+  --tert-accent-color: rgb(242, 70, 79);
+  --text-color: rgb(247, 242, 236);
+  --muted-text: rgba(247, 242, 236, 0.55);
+}
+
 body {
-    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  background:
+    radial-gradient(
+      1200px 600px at top left,
+      rgba(53, 208, 227, 0.06),
+      transparent
+    ),
+    var(--bg-color);
+  color: var(--text-color);
 }
 
-#matrix-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.15;
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
+  padding: 40px 48px 60px;
 }
 
-.login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+.card {
+  background: rgba(24, 24, 24, 0.95);
+  border-radius: 14px;
+  padding: 22px 24px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.container {
-    width: 100%;
-    max-width: 450px;
-    padding: 40px 50px;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 20px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.55);
 }
 
-.container h1 {
-    color: var(--sec-accent-color);
-    text-align: center;
-    margin: 0 0 35px 0;
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: -0.5px;
+.card h2 {
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  font-size: 13.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(247, 242, 236, 0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-.container form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.teamdetails    { grid-column: span 7; }
+.timeleft       { grid-column: span 5; }
+.feedback-full  { grid-column: span 12; }
+.projectdetails { grid-column: span 7; }
+.github         { grid-column: span 5; }
+.eventtimings   { grid-column: span 5; }
+.leaderboard    { grid-column: span 7; }
+
+.timeleft {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 231, 51, 0.12),
+      rgba(24, 24, 24, 0.95)
+    );
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.countdown {
+  margin-top: 14px;
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--accent-color);
 }
 
-.container label {
-    color: var(--text-color);
-    font-size: 14px;
-    font-weight: 500;
-    margin-left: 4px;
+.empty-state {
+  color: var(--muted-text);
+  font-style: italic;
+  font-size: 14px;
 }
 
-.container input {
-    padding: 14px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--text-color);
-    font-size: 15px;
-    transition: all 0.2s ease;
-    outline: none;
+.leaderboard-container {
+  margin-top: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
-.container input:focus {
-    border-color: var(--sec-accent-color);
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 0 0 3px rgba(var(--sec-accent-color-rgb, 99, 102, 241), 0.1);
+.leaderboard-header,
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
+  padding: 10px 14px;
+  align-items: center;
 }
 
-.container input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+.leaderboard-header {
+  background: rgba(0,0,0,0.45);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-.container button {
-    margin-top: 10px;
-    padding: 14px 20px;
-    border: 3px solid transparent;
-    border-radius: 10px;
-    background: var(--sec-bg-color);
-    border-color: var(--sec-accent-color);
-    color: var(--sec-accent-color);
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.leaderboard-body {
+  max-height: 420px;
+  overflow-y: auto;
 }
 
-.container button:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    color: var(--accent-color);
+.leaderboard-row {
+  font-size: 14px;
+  transition: background 0.15s ease;
 }
 
-.container button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+.leaderboard-row:nth-child(even) {
+  background: rgba(255,255,255,0.025);
 }
 
-.message {
-    margin-top: 20px;
-    padding: 14px 16px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-    display: none;
-    animation: slideIn 0.3s ease;
+.leaderboard-row:hover {
+  background: rgba(53, 208, 227, 0.06);
 }
 
-.message.error {
-    background: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
+.leaderboard-row.highlight {
+  background: rgba(255, 231, 51, 0.08);
+  border-left: 3px solid var(--accent-color);
 }
 
-.message.success {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22c55e;
-    border: 1px solid rgba(34, 197, 94, 0.3);
+.leaderboard-body::-webkit-scrollbar {
+  width: 6px;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.feedback-card {
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: rgba(242, 70, 79, 0.06);
+  border: 1px solid rgba(242, 70, 79, 0.18);
 }
 
-@media (max-width: 500px) {
-    .container {
-        padding: 30px 25px;
-    }
-    
-    .container h1 {
-        font-size: 28px;
-        margin-bottom: 25px;
-    }
+.feedback-card strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--tert-accent-color);
+}
+
+@media (max-width: 1100px) {
+  .dashboard {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .timeleft,
+  .eventtimings,
+  .teamdetails,
+  .projectdetails,
+  .github,
+  .leaderboard,
+  .feedback {
+    grid-column: span 6;
+  }
+}
+
+.info-block { display:flex; flex-direction:column; gap:8px; }
+.info-title { font-size: 22px; font-weight: 700; }
+.info-sub { color: var(--muted-text); font-size: 13px; }
+
+.info-list { display:flex; gap:8px; flex-wrap:wrap; }
+.chip {
+  background: rgba(53,208,227,0.12);
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.github-btn {
+  display:inline-block;
+  background: var(--sec-accent-color);
+  color:black;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.upcoming-item {
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.u-time { color: var(--accent-color); }
+
+.feedback-card.low {
+  background: rgba(40, 200, 120, 0.06);
+  border-color: rgba(40, 200, 120, 0.2);
+}
+
+.feedback-card.medium {
+  background: rgba(255, 200, 50, 0.06);
+  border-color: rgba(255, 200, 50, 0.2);
+}
+
+.feedback-card.high {
+  background: rgba(242, 70, 79, 0.08);
+  border-color: rgba(242, 70, 79, 0.25);
+}
+
+.resolve-btn {
+  margin-top:8px;
+  background:black;
+  color:white;
+  border:1px solid rgba(255,255,255,0.2);
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.feedback-card.done {
+  opacity:0.6;
+}
+
+.feedback-full #feedback-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.feedback-full {
+  align-self: start;
+}
+
+.feedback-card.low {
+  color: rgb(40, 200, 120);
+}
+
+.feedback-card.medium {
+  color: rgb(255, 200, 50);
+}
+
+.feedback-card.high {
+  color: rgb(242, 70, 79);
+}
+
+.feedback-card p,
+.feedback-card strong {
+  color: currentColor;
 }
