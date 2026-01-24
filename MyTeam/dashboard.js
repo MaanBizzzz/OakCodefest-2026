@@ -3,9 +3,22 @@ const TEAM_ID = localStorage.getItem("username") || "T01";
 
 let feedbackData = [];
 
-function toggleResolve(index) {
-  feedbackData[index].resolved = !feedbackData[index].resolved;
+async function toggleResolve(index) {
+  const item = feedbackData[index];
+  const newValue = !item.resolved;
+
+  feedbackData[index].resolved = newValue;
   renderFeedback(feedbackData);
+
+  await fetch("/.netlify/functions/updateFeedback", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      team_id: TEAM_ID,
+      comment: item.comment,
+      resolved: newValue
+    })
+  });
 }
 
 function startCountdown() {
@@ -190,6 +203,61 @@ function renderFeedback(rows) {
       </div>
     `;
   }).join("");
+}
+
+function showProjectForm() {
+  const el = document.getElementById("project-info");
+
+  el.innerHTML = `
+    <div class="form">
+      <input id="ptitle" placeholder="Project title" />
+      <textarea id="pdesc" placeholder="Project description"></textarea>
+      <button onclick="saveProject()">Save</button>
+    </div>
+  `;
+}
+
+async function saveProject() {
+  const project_title = document.getElementById("ptitle").value.trim();
+  const project_description = document.getElementById("pdesc").value.trim();
+
+  await fetch("/.netlify/functions/updateTeamProject", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      team_id: TEAM_ID,
+      project_title,
+      project_description
+    })
+  });
+
+  location.reload();
+}
+
+function showGitHubForm() {
+  const el = document.getElementById("github-info");
+
+  el.innerHTML = `
+    <div class="form">
+      <input id="repo" placeholder="GitHub repo URL" />
+      <button onclick="saveGitHub()">Save</button>
+    </div>
+  `;
+}
+
+async function saveGitHub() {
+  const repo_url = document.getElementById("repo").value.trim();
+
+  await fetch("/.netlify/functions/updateTeamProject", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      team_id: TEAM_ID,
+      repo_url
+    })
+  });
+
+  location.reload();
 }
 
 
