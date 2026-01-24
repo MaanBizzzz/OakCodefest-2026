@@ -7,10 +7,10 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-function hashPassword(password, salt) {
+function hashPassword(password, Salt) {
   return crypto
     .createHash("sha256")
-    .update(salt + password)
+    .update(Salt + password)
     .digest("hex");
 }
 
@@ -39,8 +39,8 @@ export const handler = async (event) => {
     // Fetch user from Supabase
     const { data: user, error } = await supabase
       .from("users")
-      .select("username, password_hash, salt")
-      .eq("username", username)
+      .select("team_id, hashed_password, Salt")
+      .eq("team_id", username)
       .single();
 
     if (error || !user) {
@@ -50,9 +50,9 @@ export const handler = async (event) => {
       };
     }
 
-    const hashedPassword = hashPassword(password, user.salt);
+    const hashedPassword = hashPassword(password, user.Salt);
 
-    if (hashedPassword !== user.password_hash) {
+    if (hashedPassword !== user.hashed_password) {
       return {
         statusCode: 401,
         body: JSON.stringify({ error: "Invalid credentials" })
