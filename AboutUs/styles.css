@@ -470,12 +470,6 @@ section {
     box-sizing: border-box;
 }
 
-.schedule-title {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 32px;
-}
-
 .schedule-container {
     display: flex;
     gap: 24px;
