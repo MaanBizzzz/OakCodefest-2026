@@ -97,8 +97,6 @@ function renderProject(team) {
   `;
 }
 
-
-
 function renderGitHub(team) {
   const el = document.getElementById("github-info");
 
@@ -138,8 +136,6 @@ function renderGitHub(team) {
     </div>
   `;
 }
-
-
 
 function renderUpcoming() {
   const list = document.getElementById("event-timeline");
@@ -186,7 +182,6 @@ function renderUpcoming() {
     </li>
   `).join("");
 }
-
 
 function renderLeaderboard(rows) {
   const body = document.getElementById("leaderboard-body");
@@ -299,7 +294,6 @@ function showGitHubForm() {
     </div>
   `;
 }
-
 
 async function saveGitHub() {
   const repo_url = document.getElementById("repo").value.trim();
