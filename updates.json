@@ -1,4 +1,18 @@
-[
+[ 
+  {
+    "title": "Registrations Closed! See you at Codefest 2026",
+    "description": "Registrations are now closed! We can't wait to see you all at CodeFest 2026 next weekend! Get ready for an unforgettable experience filled with coding, creativity, and collaboration!",
+    "date": "02-02-2026",
+    "image": "images/updates5.png",
+    "importance": 1
+  },
+  {
+    "title": "CodeFest bootcamp: STARTING NOW!!!",
+    "description": "The included CodeFest bootcamp for all new coders that have signed up for codefest will begin soon! All PPTs used will be in the resources section.",
+    "date": "01-31-2026",
+    "image": "images/updates4.png",
+    "importance": 2
+  },
   {
     "title": "THEMES ARE OUT!!!!",
     "description": "The themes have been released! Navigate to the themes page in the navbar to begin planning your projects now! GO! GO! GO!",
