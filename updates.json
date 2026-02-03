@@ -1,14 +1,21 @@
 [ 
   {
-    "title": "CodeFest 2026 registrations have been EXTENDED!!!",
+    "title": "Join the Codefest Discord Server Now!!!",
+    "description": "Stay updated with the latest announcements, connect with fellow participants, and get support by joining our official Codefest Discord server. Click the link in the resources section to join now!",
+    "date": "02-10-2026",
+    "image": "images/updates6.png",
+    "importance": 1
+  },
+  {
+    "title": "Codefest 2026 registrations have been EXTENDED!!!",
     "description": "On popular demand, we have extended the registration deadline to February 3rd, 2026. Hurry up and register now to secure your spot!",
     "date": "02-02-2026",
     "image": "images/updates5.png",
     "importance": 1
   },
   {
-    "title": "CodeFest bootcamp: STARTING NOW!!!",
-    "description": "The included CodeFest bootcamp for all new coders that have signed up for codefest will begin soon! All PPTs used will be in the resources section.",
+    "title": "Codefest bootcamp: STARTING NOW!!!",
+    "description": "The included Codefest bootcamp for all new coders that have signed up for Codefest will begin soon! All PPTs used will be in the resources section.",
     "date": "01-31-2026",
     "image": "images/updates4.png",
     "importance": 2
@@ -28,7 +35,7 @@
     "importance": 1
   },
   {
-    "title": "New codefest website launched",
+    "title": "New Codefest website launched",
     "description": "More information coming soon... :)",
     "date": "12-17-2025",
     "image": "images/CODEFEST26.png",
