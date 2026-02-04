@@ -501,7 +501,6 @@ section {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     .schedule-container {
         flex-direction: column;
@@ -535,7 +534,6 @@ section {
     color: var(--text-color);
 }
 
-/* Header label */
 .note-header {
     display: inline-block;
     padding: 6px 14px;
@@ -560,7 +558,6 @@ section {
     color: var(--tert-accent-color);
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     .event-note {
         margin-top: 32px;
@@ -569,5 +566,96 @@ section {
 
     .note-content {
         padding: 22px;
+    }
+}
+
+.sponsors-section {
+    padding: 80px 40px;
+    background: var(--bg-color);
+    text-align: center;
+}
+
+.sponsors-title {
+    font-size: 3em;
+    font-weight: 900;
+    color: var(--accent-color);
+    margin-bottom: 80px;
+    letter-spacing: -0.02em;
+}
+
+.sponsor-tier {
+    margin-bottom: 80px;
+}
+
+.tier-title {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: -0.01em;
+}
+
+.silver-title {
+    color: #888888;
+    text-shadow: 0 2px 10px rgba(136,136,136,0.18);
+    font-size: 2.8em;
+}
+
+.sponsor-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.sponsor-logo {
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sponsor-logo img {
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12));
+}
+
+.silver-logo {
+    min-width: 280px;
+    min-height: 200px;
+    padding: 12px 16px;
+}
+
+.silver-logo img {
+    max-width: 240px;
+    max-height: 160px;
+}
+
+.sponsor-logo:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 32px var(--shadow-color);
+}
+
+@media (max-width: 900px) {
+    .sponsors-section {
+        padding: 40px 10px;
+    }
+    
+    .sponsor-logos {
+        gap: 20px;
+    }
+
+    .silver-logo {
+        min-width: 240px;
+        min-height: 160px;
+        padding: 10px 12px;
+    }
+    
+    .silver-logo img {
+        max-width: 200px;
+        max-height: 120px;
     }
 }
