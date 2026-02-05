@@ -257,18 +257,176 @@ if (document.readyState === 'loading') {
   init();
 }
 
+
+// CONFETTI FOR COUNTDOWN
+const Colours = ["#f74667","#fcd846","#52eca9","#49b1fb","#9c51f8","#f94fb5","#48f9e2","#eed740"];
+
+function CreateConfetti() {
+  const durationMs = 20000;
+  const particleCount = 260;
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  canvas.style.position = "fixed";
+  canvas.style.left = "0";
+  canvas.style.top = "0";
+  canvas.style.width = "100%";
+  canvas.style.height = "100%";
+  canvas.style.pointerEvents = "none";
+  canvas.style.zIndex = "9999";
+  canvas.setAttribute("aria-hidden", "true");
+
+  document.body.appendChild(canvas);
+
+  let width = 0;
+  let height = 0;
+
+  const resize = () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.floor(width * window.devicePixelRatio);
+    canvas.height = Math.floor(height * window.devicePixelRatio);
+    ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+  };
+
+  resize();
+  window.addEventListener("resize", resize);
+
+  const centerX = () => width * 0.5;
+  const centerY = () => height * 0.3;
+
+  const spawn = (side) => {
+    const fromLeft = side === "left";
+    const x = fromLeft ? -40 : width + 40;
+    const y = height + 30;
+
+    const targetX = centerX();
+    const targetY = centerY();
+    const angleToCenter = Math.atan2(targetY - y, targetX - x);
+    const angleSpread = Math.PI * 0.22;
+    const angle = angleToCenter + (Math.random() - 0.5) * angleSpread;
+
+    const speed = 7 + Math.random() * 7;
+    const vx = Math.cos(angle) * speed;
+    const vy = Math.sin(angle) * speed - Math.random() * 2.4;
+
+    return {
+      x,y,vx,vy,
+      size: 6 + Math.random() * 6,
+      rotation: Math.random() * Math.PI,
+      rotationSpeed: (Math.random() - 0.5) * 0.2,
+      color: Colours[Math.floor(Math.random() * Colours.length)],
+      life: 1,
+      decay: 0.002 + Math.random() * 0.002,
+      age: 0,
+      burstMs: 600 + Math.random() * 600,
+      driftX: (Math.random() - 0.5) * 0.35,
+      driftY: 0.08 + Math.random() * 0.18,
+      wobble: Math.random() * Math.PI * 2
+    };
+  };
+
+  const particles = [];
+  for (let i = 0; i < particleCount; i += 1) {
+    particles.push(spawn(i % 2 === 0 ? "left" : "right"));
+  }
+
+  const gravity = 0.12;
+  const drag = 0.992;
+  const endAt = performance.now() + durationMs;
+
+  let rafId = 0;
+  let lastTime = performance.now();
+
+  const draw = () => {
+    const now = performance.now();
+    const deltaMs = now - lastTime;
+    const dt = Math.max(0.5, Math.min(2, deltaMs / 16.67));
+    lastTime = now;
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = particles.length - 1; i >= 0; i -= 1) {
+      const p = particles[i];
+      p.age += deltaMs;
+
+      if (p.age < p.burstMs) {
+        p.vx *= Math.pow(drag, dt);
+        p.vy = p.vy * Math.pow(drag, dt) + gravity * dt;
+      } else {
+        p.vx += p.driftX * dt;
+        p.vy += p.driftY * dt;
+        p.vx *= 0.985;
+        p.vy *= 0.985;
+      }
+
+      p.x += p.vx * dt;
+      p.y += p.vy * dt;
+      p.rotation += p.rotationSpeed;
+      p.life -= p.decay;
+
+      if (p.life <= 0 || p.y > height + 60) {
+        particles.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      const sway = Math.sin((p.age / 180) + p.wobble) * 0.6;
+      ctx.translate(p.x + sway, p.y);
+      ctx.rotate(p.rotation);
+      ctx.globalAlpha = Math.max(p.life, 0.15);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+      ctx.restore();
+    }
+
+    if (performance.now() < endAt && particles.length) {
+      rafId = requestAnimationFrame(draw);
+    } else {
+      cleanup();
+    }
+  };
+
+  const cleanup = () => {
+    cancelAnimationFrame(rafId);
+    window.removeEventListener("resize", resize);
+    if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+  };
+
+  draw();
+}
+
+window.CreateConfetti = CreateConfetti;
+
+
+
 // COUNTDOWN
 document.addEventListener("DOMContentLoaded", () => {
 
-  const targetDate = new Date("2026-02-07T10:00:00").getTime();
+  const targetDate = new Date("2026-02-07T09:15:00").getTime();
   let lastValues = {};
+  let liveTriggeredTime = null;
 
   function UpdateCountdown() {
     const now = Date.now();
     let diff = targetDate - now;
+    const endDate = targetDate + 86400000;
+    const diffFromEnd = now - endDate;
+
+    if (diffFromEnd >= 0) {
+      if (!liveTriggeredTime) {
+        liveTriggeredTime = Date.now();
+        showEndedState();
+      }
+      return;
+    }
 
     if (diff <= 0) {
-      showLiveState();
+      if (!liveTriggeredTime) {
+        liveTriggeredTime = Date.now();
+        showLiveState();
+      }
       return;
     }
 
@@ -312,12 +470,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const section = document.getElementById("countdown-section");
     if (!section) return;
 
-    section.innerHTML = `
-      <div class="live-container">
-        <h1>OAKRIDGE CODEFEST 2026 IS LIVE!</h1>
-        <p>Let The Hacking Begin!</p>
-      </div>
-    `;
+    const countdownEl = document.getElementById("countdown");
+    if (countdownEl) {
+      countdownEl.classList.add("countdown-fade-out");
+    }
+
+    setTimeout(() => {
+      CreateConfetti();
+      section.innerHTML = `
+        <div class="live-container">
+          <h1>OAKRIDGE CODEFEST 2026 IS LIVE!</h1>
+          <p>Let The Hacking Begin!</p>
+        </div>
+      `;
+      const liveEl = section.querySelector('.live-container');
+      if (liveEl) {
+        setTimeout(() => {
+          liveEl.classList.add('live-fade-in');
+        }, 50);
+      }
+    }, 700); 
+  }
+
+  function showEndedState() {
+    const section = document.getElementById("countdown-section");
+    if (!section) return;
+
+    const liveEl = section.querySelector('.live-container');
+    if (liveEl) {
+      liveEl.classList.remove('live-fade-in');
+      liveEl.classList.add('countdown-fade-out');
+    }
+
+    setTimeout(() => {
+      section.innerHTML = `
+        <div class="live-container ended-container">
+          <h1>CODEFEST HAS ENDED</h1>
+          <p>Thanks for participating in Oakridge Codefest 2026!</p>
+        </div>
+      `;
+      const endedEl = section.querySelector('.ended-container');
+      if (endedEl) {
+        setTimeout(() => {
+          endedEl.classList.add('live-fade-in');
+        }, 50);
+      }
+    }, 700);
   }
 
   UpdateCountdown();
