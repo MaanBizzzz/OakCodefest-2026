@@ -29,7 +29,7 @@ export const handler = async (event) => {
     const { data: feedback, error: feedbackError } = await supabase
       .from("feedback")
       .select("*")
-      .eq("team_id", team_id)
+      .or(`team_id.eq.${team_id},and(team_id.eq.T01,team_id.neq.T41)`)
       .order("priority");
 
     if (feedbackError) throw feedbackError;
