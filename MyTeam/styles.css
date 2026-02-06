@@ -457,3 +457,52 @@ body {
     inset 0 0 0 1px rgba(255,255,255,0.03),
     0 6px 18px rgba(0,0,0,0.4);
 }
+
+.info-desc {
+  margin-top: -4px;
+}
+
+.theme-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.theme-row label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-text);
+  font-weight: 600;
+}
+
+.theme-select {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text-color);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.theme-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.theme-chip {
+  background: rgba(53,208,227,0.15);
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.theme-select option {
+  background: #0e0e0e;
+  color: #f1f1f1;
+  padding: 12px;
+  font-weight: 500;
+}

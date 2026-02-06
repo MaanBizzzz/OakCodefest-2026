@@ -1,5 +1,6 @@
 const EVENT_END = new Date("2026-02-08T10:00:00");
 const TEAM_ID = localStorage.getItem("username") || "T01";
+let currentTeam = null;
 
 let feedbackData = [];
 
@@ -74,8 +75,40 @@ function renderTeam(t) {
   `;
 }
 
-function renderProject(team) {
+function renderProject(team, forceEdit = false) {
   const el = document.getElementById("project-info");
+  const primaryValue = team.primary_theme || "Not Selected";
+  const secondaryValue = team.secondary_theme || "Not Selected";
+  const isJunior = Number(team.category) === 1;
+
+  const baseThemes = [
+    "Not Selected",
+    "HealthTech and Digital Wellbeing",
+    "Environmental Monitoring and Climate Tech",
+    "Robotics and Embedded Systems",
+    "Digital Accessibility and Assistive Technology",
+    "Cybersecurity"
+  ];
+
+  if (isJunior) {
+    baseThemes.splice(1, 0, "Game Development");
+  }
+
+  const themeOptions = baseThemes
+    .map(t => `<option value="${t}" ${t === primaryValue ? "selected" : ""}>${t}</option>`)
+    .join("");
+
+  const themeOptionsSecondary = baseThemes
+    .map(t => `<option value="${t}" ${t === secondaryValue ? "selected" : ""}>${t}</option>`)
+    .join("");
+
+  const primaryField = !forceEdit
+    ? `<div class="theme-chip">${primaryValue}</div>`
+    : `<select id="primaryTheme" class="theme-select">${themeOptions}</select>`;
+
+  const secondaryField = !forceEdit
+    ? `<div class="theme-chip">${secondaryValue}</div>`
+    : `<select id="secondaryTheme" class="theme-select">${themeOptionsSecondary}</select>`;
 
   el.innerHTML = `
     <div class="project-block">
@@ -93,6 +126,22 @@ function renderProject(team) {
         </div>
         <button class="btn secondary" onclick="editProjectDesc()">Edit</button>
       </div>
+
+      <div class="theme-row">
+        <label>Primary Theme</label>
+        ${primaryField}
+      </div>
+
+      <div class="theme-row">
+        <label>Secondary Theme</label>
+        ${secondaryField}
+      </div>
+
+      ${
+        forceEdit
+          ? `<button class="btn primary" onclick="saveThemes()">Save Themes</button>`
+          : `<button class="btn secondary" onclick="enableThemeEdit()">Edit Themes</button>`
+      }
     </div>
   `;
 }
@@ -366,6 +415,27 @@ async function saveProjectDesc() {
   location.reload();
 }
 
+function enableThemeEdit() {
+  renderProject(currentTeam, true);
+}
+
+async function saveThemes() {
+  const primary_theme = document.getElementById("primaryTheme")?.value || null;
+  const secondary_theme = document.getElementById("secondaryTheme")?.value || null;
+
+  await fetch("/.netlify/functions/updateTeamProject", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      team_id: TEAM_ID,
+      primary_theme,
+      secondary_theme
+    })
+  });
+
+  location.reload();
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem('authToken');
 
@@ -394,6 +464,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderUpcoming();
 
     const { team, feedback, leaderboard } = await loadDashboardData();
+    currentTeam = team;
 
     feedbackData = feedback.map(f => ({
       ...f,
