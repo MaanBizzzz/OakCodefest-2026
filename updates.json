@@ -1,5 +1,12 @@
 [ 
   {
+    "title": "One day to go until Codefest 2026!!!",
+    "description": "We are just one day away from the biggest school hackathon in Bangalore! Get ready for an unforgettable experience filled with coding, creativity, and collaboration. Coding starts tomorrow at 9:15 AM sharp!",
+    "date": "06-05-2026",
+    "image": "images/updates9.png",
+    "importance": 3
+  },
+  {
     "title": "Codefest Bootcamp resources are now available!",
     "description": "The CF Bootcamp, with the last session earlier today just ended! If you missed the bootcamp or want to review the material, you can find all the PPTs and resources in the resources section. Check them out now!",
     "date": "05-10-2026",

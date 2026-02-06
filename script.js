@@ -481,6 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="live-container">
           <h1>OAKRIDGE CODEFEST 2026 IS LIVE!</h1>
           <p>Let The Hacking Begin!</p>
+          <a class="live-login-btn" href="MyTeam/login.html">Go to Login</a>
         </div>
       `;
       const liveEl = section.querySelector('.live-container');

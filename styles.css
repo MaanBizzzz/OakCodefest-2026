@@ -552,6 +552,37 @@ html, body {
   padding: 4px 0;
 }
 
+.live-login-btn {
+  display: block;
+  margin: 22px auto 0;
+  padding: 16px 16px;
+  width: 20%;
+  font-size: 12px;
+  font-weight: 700;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 15px var(--box-shadow-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: 200px;
+  text-align: center;
+  border: 3px solid var(--sec-accent-color);
+}
+
+.live-login-btn:hover {
+  transform: translateY(-3px);
+  border: 3px solid var(--accent-color);
+}
+
+.live-login-btn:focus-visible {
+  outline: 2px solid var(--tert-accent-color);
+  outline-offset: 3px;
+}
+
 .ended-container h1 {
   color: var(--accent-color) !important;
   -webkit-text-fill-color: var(--accent-color) !important;
