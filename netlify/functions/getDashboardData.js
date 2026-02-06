@@ -34,16 +34,21 @@ export const handler = async (event) => {
 
     if (feedbackError) throw feedbackError;
 
-    const { data: allTeams, error: allTeamsError } = await supabase
+    let leaderboard = [];
+    const currentTeam = Number(team.category);
+
+    const { data, error } = await supabase
       .from("teams")
       .select("team_id, team_name, points")
+      .eq("category", currentTeam)
       .order("points", { ascending: false });
 
-    if (allTeamsError) throw allTeamsError;
+    if (error) throw error;
+    leaderboard = data;
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ team, feedback, leaderboard: allTeams })
+      body: JSON.stringify({ team, feedback, leaderboard })
     };
 
   } catch (err) {
