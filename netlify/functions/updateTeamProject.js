@@ -15,7 +15,9 @@ export const handler = async (event) => {
       team_id,
       project_title,
       project_description,
-      repo_url
+      repo_url,
+      primary_theme,
+      secondary_theme
     } = JSON.parse(event.body);
 
     if (!team_id) {
@@ -27,6 +29,8 @@ export const handler = async (event) => {
     if (project_description !== undefined)
       updates.project_description = project_description;
     if (repo_url !== undefined) updates.repo_url = repo_url;
+    if (primary_theme !== undefined) updates.primary_theme = primary_theme;
+    if (secondary_theme !== undefined) updates.secondary_theme = secondary_theme;
 
     const { error } = await supabase
       .from("teams")
