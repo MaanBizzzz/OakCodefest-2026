@@ -225,12 +225,6 @@ html, body {
   max-width: 100%;
   display: block;
 }
-.update-card,
-.update-card * {
-  user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
 
 .info-section {
   max-width: 800px;
