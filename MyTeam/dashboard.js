@@ -203,9 +203,10 @@ function renderUpcoming() {
     ["2026-02-08T06:15:00", "Breakfast"],
     ["2026-02-08T07:00:00", "Fourth Audit"],
     ["2026-02-08T09:15:00", "Coding Ends"],
-    ["2026-02-08T09:30:00", "Prep Presentations"],
-    ["2026-02-08T20:00:00", "Presentations"],
-    ["2026-02-08T11:00:00", "Closing Ceremony"]
+    ["2026-02-08T09:30:00", "Short-listed Teams Prepare Presentations"],
+    ["2026-02-08T09:50:00", "Presentations"],
+    ["2026-02-08T11:00:00", "Closing Ceremony"],
+    ["2026-02-08T12:00:00", "Event End"]
   ].map(([time, label]) => ({
     time: new Date(time),
     label
