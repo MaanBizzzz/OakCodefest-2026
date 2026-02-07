@@ -39,7 +39,7 @@ export const handler = async (event) => {
 
     const { data, error } = await supabase
       .from("teams")
-      .select("team_id, team_name")
+      .select("team_id, team_name, points, category")
       .eq("category", currentTeam)
       .order("points", { ascending: false });
 

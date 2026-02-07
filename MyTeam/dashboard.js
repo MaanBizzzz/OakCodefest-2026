@@ -203,9 +203,10 @@ function renderUpcoming() {
     ["2026-02-08T06:15:00", "Breakfast"],
     ["2026-02-08T07:00:00", "Fourth Audit"],
     ["2026-02-08T09:15:00", "Coding Ends"],
-    ["2026-02-08T09:30:00", "Prep Presentations"],
-    ["2026-02-08T20:00:00", "Presentations"],
-    ["2026-02-08T11:00:00", "Closing Ceremony"]
+    ["2026-02-08T09:30:00", "Short-listed Teams Prepare Presentations"],
+    ["2026-02-08T09:50:00", "Presentations"],
+    ["2026-02-08T11:00:00", "Closing Ceremony"],
+    ["2026-02-08T12:00:00", "Event End"]
   ].map(([time, label]) => ({
     time: new Date(time),
     label
@@ -234,26 +235,45 @@ function renderUpcoming() {
 
 function renderLeaderboard(rows) {
   const body = document.getElementById("leaderboard-body");
-
-  if (!rows || rows.length === 0) {
+  if (!Array.isArray(rows) || rows.length === 0) {
     body.innerHTML = `<div class="empty-state">No teams found</div>`;
     return;
   }
 
-  const top5 = rows
-    .map(r => ({
-      team_id: r.team_id,
-      team_name: r.team_name,
-    }))
-    .sort((a, b) => b.points - a.points)
-    .slice(0, 5);
+  const clean = rows.map(r => ({
+    team_id: r.team_id,
+    team_name: r.team_name,
+    points: typeof r.points === "number" ? r.points : 0
+  }));
 
-  body.innerHTML = top5.map((r, i) => `
-    <div class="leaderboard-row ${r.team_id === TEAM_ID ? "highlight" : ""}">
-      <span>#${i + 1}</span>
-      <span>${r.team_name}</span>
-    </div>
-  `).join("");
+  clean.sort((a, b) => b.points - a.points);
+  const groups = [];
+  let rank = 1;
+  let i = 0;
+  while (i < clean.length && groups.length < 5) {
+    const current = clean[i];
+    const tied = [current];
+    let j = i + 1;
+    while (j < clean.length && clean[j].points === current.points) {
+      tied.push(clean[j]);
+      j++;
+    }
+    groups.push({ rank, teams: tied });
+    rank += tied.length;
+    i = j;
+  }
+  body.innerHTML = groups.map(g => {
+    const names = g.teams.map(t => t.team_name).join(" / ");
+    const highlight = g.teams.some(t => t.team_id === TEAM_ID)
+      ? "highlight"
+      : "";
+    return `
+      <div class="leaderboard-row ${highlight}">
+        <span>#${g.rank}</span>
+        <span>${names}</span>
+      </div>
+    `;
+  }).join("");
 }
 
 function renderFeedback(rows) {
@@ -478,6 +498,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   } catch (err) {
     console.error(err);
-    window.location.href = 'login.html';
+    alert("Dashboard error — check console");
   }
 });
